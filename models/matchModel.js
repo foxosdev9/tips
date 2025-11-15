@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const matchSchema = new mongoose.Schema({
+    day: {
+        type: Date,
+        default: Date.now()
+    },
     home: {
         name: { type: String, required: true},
         odd: { type: String, required: true}
@@ -19,9 +23,13 @@ const matchSchema = new mongoose.Schema({
         type: Number,
         required: [true, 'enter odd']
     },
-    bestTip: String
-
-
+    bestTip: String,
+    finished: {
+        type: Boolean, default: false
+    },
+    predictions: {
+        type: [String]
+    }
 })
 
 

@@ -19,22 +19,26 @@ exports.getAllMatches = async (req, res, next) => {
 
 
 exports.createMatch = async (req, res) => {
+ 
     try{
+        
         const {
           home,
           away,
-          league,time, tipOdd, bestTip
+          league,time, tipOdd, bestTip, date, listOfPrediction
        } = req.body;
 
        
 
-        const match = await Match.create({
+    const match = await Match.create({
            home,
            away,
            league,
            time,
            tipOdd: Number(tipOdd),
-           bestTip
+           bestTip,
+           date,
+           predictions: listOfPrediction
         });
 
         res.status(201).json({
@@ -46,6 +50,7 @@ exports.createMatch = async (req, res) => {
     }catch(err){
         console.log(err);
     }
+
 }
 
 exports.clearDataCollection = async (req, res) => {
